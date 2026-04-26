@@ -6,15 +6,44 @@
 //
 
 import UIKit
+import UserNotifications
 
-@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    private let notificationDelegate = AppNotificationCenterDelegate()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        Self.configureGlobalChrome()
+        UNUserNotificationCenter.current().delegate = notificationDelegate
         return true
+    }
+
+    /// Navigation / scroll / window defaults that otherwise draw `systemBackground` (black in dark mode)
+    /// above SwiftUI gradients.
+    static func configureGlobalChrome() {
+        let title = UIColor(white: 1.0, alpha: 1.0)
+        let bar = UINavigationBarAppearance()
+        bar.configureWithTransparentBackground()
+        bar.backgroundColor = .clear
+        bar.shadowColor = .clear
+        bar.titleTextAttributes = [.foregroundColor: title]
+        bar.largeTitleTextAttributes = [.foregroundColor: title]
+        UINavigationBar.appearance().isTranslucent = true
+        UINavigationBar.appearance().tintColor = UIColor(named: "AppPrimary")
+        UINavigationBar.appearance().standardAppearance = bar
+        UINavigationBar.appearance().compactAppearance = bar
+        UINavigationBar.appearance().scrollEdgeAppearance = bar
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = bar
+        }
+
+        UIScrollView.appearance().backgroundColor = .clear
+        UITableView.appearance().backgroundColor = .clear
+
+        if let bg = UIColor(named: "AppBackground") {
+            UIWindow.appearance().backgroundColor = bg
+        } else {
+            UIWindow.appearance().backgroundColor = UIColor(red: 0.2, green: 0.231, blue: 0.392, alpha: 1)
+        }
     }
 
     // MARK: UISceneSession Lifecycle
