@@ -2,29 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleURLTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>com.goxlaflow.url</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>goxlaflow</string>
-			</array>
-		</dict>
-	</array>
-	<key>NSUserActivityTypes</key>
-	<array>
-		<string>com.goxlaflow.startFocus</string>
-	</array>
-	<key>UIApplicationSceneManifest</key>
-	<dict>
-		<key>UIApplicationSupportsMultipleScenes</key>
-		<false/>
-		<key>UISceneConfigurations</key>
-		<dict/>
-	</dict>
+    <key>NSCameraUsageDescription</key>
+    <string>We use the camera to let you capture photos and videos inside web content.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>We use the microphone to record audio for camera and web content.</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoadsInWebContent</key>
+        <true/>
+    </dict>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneConfigurationName</key>
+                    <string>Default Configuration</string>
+                    <key>UISceneDelegateClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+                    <key>UISceneStoryboardFile</key>
+                    <string>Main</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+    </array>
+
+    <!-- ОТСЛЕЖИВАНИЕ ПОЛЬЗОВАТЕЛЯ (ATT) -->
+    <key>NSUserTrackingUsageDescription</key>
+    <string>We use this data to measure ad campaigns and improve your experience in the app.</string>
+    
 </dict>
 </plist>
